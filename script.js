@@ -6,14 +6,26 @@ const searchBtn = document.querySelector(".search button")
 const hotiinNer = document.querySelector(".city")
 const degree = document.querySelector(".Temperature")
 const weatherIcon = document.querySelector(".weather-icon")
+const windSpeed = document.querySelector(".windSpeed")
+const Humidity = document.querySelector(".Humidity")
 
-console.log(degree)
+console.log(Humidity)
 async function checkweather(city) {
     const response = await fetch(apiUrl +city + `&appid=${apiKey} `)
 
+
     const data = await response.json ()
+
     hotiinNer.innerHTML = data.name
     degree.innerHTML = data.main.temp + "℃"
+
+    windSpeed.innerHTML = data.wind.speed
+
+    Humidity.innerHTML = data.main.humidity + "%"
+
+
+
+
 
     if (data.weather[0].main === "Rain") {
         weatherIcon.src = "images/rain.png"
@@ -27,7 +39,7 @@ async function checkweather(city) {
         weatherIcon.src = "images/mist.png"
     }
 
-    console.log()
+  
 
     console.log(data)
 }
